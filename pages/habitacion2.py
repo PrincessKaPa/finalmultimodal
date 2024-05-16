@@ -42,15 +42,15 @@ client1.on_message = on_message
 
 
 
-st.title("Interfaces Multimodales")
-st.subheader("CONTROL POR VOZ")
+st.title("ROOM 2")
+st.subheader("CONTROL WITH VOICE")
 
 
 
 
 
 
-st.write("Toca el Botón y habla ")
+st.write("Tap the button and speak")
 
 stt_button = Button(label=" Inicio ", width=200)
 
@@ -94,3 +94,34 @@ if result:
         os.mkdir("temp")
     except:
         pass
+
+st.subheader("CONTROL WITH BUTTONS")
+
+st.text("Yellow Light")
+
+if st.button('ON'):
+    act1="ON"
+    client1= paho.Client("clientekp")                           
+    client1.on_publish = on_publish                          
+    client1.connect(broker,port)  
+    message =json.dumps({"Act2":act1})
+    ret= client1.publish("kp_s", message)
+ 
+    #client1.subscribe("Sensores")
+    
+    
+else:
+    st.write('')
+
+if st.button('OFF'):
+    act1="OFF"
+    client1= paho.Client("clientekp")                           
+    client1.on_publish = on_publish                          
+    client1.connect(broker,port)  
+    message =json.dumps({"Act2":act1})
+    ret= client1.publish("kp_s", message)
+  
+    
+else:
+    st.write('')
+
